@@ -93,7 +93,7 @@ tabelao %>%
   kbl('html', digits = 4, escape = FALSE, booktabs = TRUE, 
       longtable = TRUE, align = 'c', decimal.mark = ',') %>% 
   kable_classic %>% 
-  row_spec(which(tabelao$coloracao=='J1'), bold = T, color = "black",
+  row_spec(which(tabelao$highlight=='J1'), bold = T, color = "black",
            align = 'c', background = "grey95") %>% 
   column_spec(ncol(tabelao), color = 'white', background = 'white') %>%
   scroll_box(height = "1000px") %>% 
