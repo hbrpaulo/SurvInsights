@@ -25,9 +25,10 @@ tab_desc <- function(df, column){
   }else{
     
     # var categorica ----
-    
     # mostrar quais niveis categoricas existentem para a var cat
-    example_levels <- paste('Niveis:', paste(sort(unique(aux$.y.)),
+
+    exemplo_niveis <- paste('Levels:', paste(sort(unique(aux$.y.)),
+
                                              collapse = ', '))
     # limita o tamanho do vetor para nao desconfigurar a tabela
     if(str_count(example_levels)>10){

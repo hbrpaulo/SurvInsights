@@ -6,10 +6,9 @@ tab_desc_num <- function(aux, column, k = 4){
   fit <- coxph(data = aux, Surv(aux$tempos, aux$censura)~.y.)
   
   tibble(
-    .y. = 'Coeficiente regressao',
+    .y. = 'Regression coefficient',
     group1 = NA,
     group2 = fit %>% coef %>% exp %>% round(., k) %>% as.character, 
     p = format_sig(summary(fit)[["sctest"]][["pvalue"]]),
     test = 'placeholder'
-  )
-}
+  )}
