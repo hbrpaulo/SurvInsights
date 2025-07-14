@@ -1,7 +1,7 @@
 Package: SurvInsights
 Title: Tools for Survival Analysis Descriptive Tables
 Version: 0.0.0.9000
-Authors@R: person(given = "Paulo", role = c("aut", "cre"), email = "paulo@example.com")
+Authors@R: person(given = "Paulo", role = c("aut", "cre"), email = "hbrpaulo@gmail.com")
 Description: Provides helper functions for summarising survival data in tables.
 License: MIT
 Encoding: UTF-8
