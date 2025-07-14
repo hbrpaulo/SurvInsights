@@ -1,0 +1,37 @@
+# R-specific ignores
+.Rhistory
+.Rapp.history
+.RData
+.RDataTmp
+.Ruserdata
+
+# RStudio files
+.Rproj.user/
+*.Rproj
+
+# Example code and build output
+*-Ex.R
+*.tar.gz
+*.Rcheck/
+
+# pkgdown site
+docs/
+
+# Knitr and R Markdown caches
+*_cache/
+/cache/
+
+# Temporary files from R Markdown
+*.utf8.md
+*.knit.md
+
+# OAuth token
+.httr-oauth
+
+# R Environment Variables
+.Renviron
+
+# Temporary output directories
+output/
+results/
+
