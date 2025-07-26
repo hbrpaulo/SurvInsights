@@ -14,3 +14,28 @@
 # Install from GitHub (coming ~not so~ soon)
 # devtools::install_github("hbrpaulo/SurvInsights")
 ```
+
+## Sample datasets
+
+The `input/ics_archive/` folder contains excerpts from the dataset used in
+the study *"Survival prediction of patients with sepsis from age, sex, and
+septic episode number alone"* (doi:[10.1038/s41598-020-73558-3](https://doi.org/10.1038/s41598-020-73558-3)).
+Only a few variables are kept to keep the files small and suitable for
+examples.
+
+## Reproducing the example analysis
+
+1. Install the required packages:
+
+   ```r
+   install.packages(c("kableExtra", "tidyverse", "survival"))
+   ```
+
+2. Source the helper scripts and render the R Markdown document:
+
+   ```r
+   rmarkdown::render("skeleton.Rmd")
+   ```
+
+   The rendered HTML will contain the descriptive tables shown in the
+   examples.

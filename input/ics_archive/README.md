@@ -1,0 +1,7 @@
+The CSV files in this directory are small excerpts from the data
+published alongside the article *"Survival prediction of patients with
+sepsis from age, sex, and septic episode number alone"*
+(Sci Rep 2020, doi:10.1038/s41598-020-73558-3). They include only the
+variables `age_years`, `sex_0male_1female`, `episode_number` and
+`hospital_outcome_1alive_0dead` and are intended solely for package
+examples.

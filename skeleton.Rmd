@@ -8,6 +8,12 @@ output:
   #pdf_document: default
 ---
 
+To reproduce this analysis run the following command in R:
+
+```r
+rmarkdown::render("skeleton.Rmd")
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.align = 'center', 
                       out.width = '80%',
