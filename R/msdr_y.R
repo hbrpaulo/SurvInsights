@@ -23,7 +23,7 @@ msdr_y <- function(aux, k = 2){
            sd = fit_sum$se.rmean,
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>% 
-      mutate_if(is.numeric, round, digits = k) %>% 
+      dplyr::mutate(dplyr::across(where(is.numeric), round, digits = k)) %>%
       mutate(group2 = paste0(media, '±', sd,' (',
                              li, '~', ls, ')')) %>% 
       select(.y., group2)
@@ -37,7 +37,7 @@ msdr_y <- function(aux, k = 2){
            sd = fit_sum$se.rmean.,
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>% 
-      mutate_if(is.numeric, round, digits = k) %>% 
+      dplyr::mutate(dplyr::across(where(is.numeric), round, digits = k)) %>%
       mutate(group2 = paste0(media, '±', sd,' (',
                              li, '~', ls, ')')) %>% 
       select(.y., group2)
