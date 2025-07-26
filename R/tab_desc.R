@@ -1,9 +1,12 @@
-#' @description Unify results for both numeric and categorical variables
-#' @param df Data frame with survival data
-#' @param column Name of the column to be analyzed
-#' @return A tibble with frequency and survival statistics
+#' Descriptive statistics for one column
+#'
+#' @description Summarise a variable with counts and survival metrics.
+#' @param df Data frame containing `tempos`, `censura` and the variable.
+#' @param column Name of the column to be analysed.
+#' @return A tibble with frequency and survival information formatted for tables.
 #' @examples
-#' tab_desc(lung, 'sex')
+#' tab_desc(lung, "sex")
+#' @export
 
 tab_desc <- function(df, column){
   aux <- df %>% select(tempos, censura, .y. = all_of(column))
@@ -54,3 +57,4 @@ tab_desc <- function(df, column){
   }
   aux %>% add_row(.after = nrow(aux), highlight = '.')
 }
+

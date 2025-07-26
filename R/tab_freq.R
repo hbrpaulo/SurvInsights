@@ -1,11 +1,11 @@
-#' @description This function creates a frequency table for a specified column in a data frame.
-#' @param aux A data frame containing the column to be analyzed
-#' @param .y. The name of the column to be analyzed (as a string)
-#' @return A data frame with the frequency of each unique value in the specified column, including the percentage of total occurrences.
+#' Frequency table
+#'
+#' @description Create a simple frequency table for the column `.y.` of a data frame.
+#' @param aux Data frame containing a `.y.` column.
+#' @return Tibble with counts and percentages for each level.
 #' @examples
-# df <- data.frame(.y. = c('short', 'medium', 'long', 'short', 'medium'),
-#                  aux = c('yes', 'no', 'yes', 'no', 'yes'))
-# tab_freq(df)
+#' tab_freq(tibble::tibble(.y. = c('A','B','A')))
+#' @export
 
 tab_freq <- function(aux){
   # aux <- df %>%
@@ -25,3 +25,4 @@ tab_freq <- function(aux){
     arrange(.y.) %>% 
     ungroup
 }
+
