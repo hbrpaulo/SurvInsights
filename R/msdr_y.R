@@ -10,7 +10,7 @@
 #' @examples
 #' # Assuming 'df' is a data frame with survival data
 #' msdr_y(df, k = 2)
-#' rmean ± se_rmean (0.95LCL ~ 0.95UCL)
+#' rmean plus and minus se_rmean (0.95LCL ~ 0.95UCL)
 
 msdr_y <- function(aux, k = 2){
   
@@ -24,7 +24,7 @@ msdr_y <- function(aux, k = 2){
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>% 
       dplyr::mutate(dplyr::across(where(is.numeric), round, digits = k)) %>%
-      mutate(group2 = paste0(media, '±', sd,' (',
+      mutate(group2 = paste0(media, '\u00B1', sd,' (',
                              li, '~', ls, ')')) %>% 
       select(.y., group2)
   }else{
@@ -38,7 +38,7 @@ msdr_y <- function(aux, k = 2){
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>% 
       dplyr::mutate(dplyr::across(where(is.numeric), round, digits = k)) %>%
-      mutate(group2 = paste0(media, '±', sd,' (',
+      mutate(group2 = paste0(media, '\u00B1', sd,' (',
                              li, '~', ls, ')')) %>% 
       select(.y., group2)
   }
