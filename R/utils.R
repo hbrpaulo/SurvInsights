@@ -3,14 +3,14 @@
 #' @description Format the mean, standard deviation and range of a numeric vector.
 #' @param x Numeric vector to summarise.
 #' @param k Number of decimal places to round to.
-#' @return A character string in the form "mean±sd (min~max)".
+#' @return A character string in the form "mean plus and minus sd (min~max)".
 #' @examples
 #' msdr(c(1, 2, 3))
 #' @export
 msdr <- function(x, k = 2) {
   x <- as.numeric(na.omit(x))
   paste0(
-    round(mean(x), k), "±",
+    round(mean(x), k), "\u00B1",
     round(sd1(x), k), " (",
     paste0(round(min(x), k), '~', round(max(x), k), ")")
   )
