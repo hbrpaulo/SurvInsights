@@ -1,7 +1,7 @@
 msdr <- function(x, k = 2) {
   x <- as.numeric(na.omit(x))
   paste0(
-    round(mean(x), k), "±",
+    round(mean(x), k), "\u00B1",
     round(sd1(x), k), " (",
     paste0(round(min(x), k), '~', round(max(x), k), ")")
   )

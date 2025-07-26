@@ -1,7 +1,7 @@
 library(SurvInsights)
 
 test_that("msdr formats numeric summary correctly", {
-  expect_equal(msdr(c(1,2,3)), "2±1 (1~3)")
+  expect_equal(msdr(c(1,2,3)), "2\u00B11 (1~3)")
 })
 
 test_that("format_sig adds significance stars", {
