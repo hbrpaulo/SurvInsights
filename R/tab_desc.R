@@ -1,5 +1,5 @@
 #' @description Unify results for both numeric and categorical variables
-#' @param aux Data frame with survival data
+#' @param df Data frame with survival data
 #' @param column Name of the column to be analyzed
 #' @return A tibble with frequency and survival statistics
 #' @examples
