@@ -13,3 +13,4 @@ Imports:
     survival
 Suggests:
     testthat
+RoxygenNote: 7.3.1
