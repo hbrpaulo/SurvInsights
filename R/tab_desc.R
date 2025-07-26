@@ -2,19 +2,21 @@
 #' @param aux Data frame with survival data
 #' @param column Name of the column to be analyzed
 #' @return A tibble with frequency and survival statistics
+#' @examples
+#' tab_desc(lung, 'sex')
 
 tab_desc <- function(df, column){
   aux <- df %>% select(tempos, censura, .y. = all_of(column))
   
-  # separar execucao entre var numericas e demais
+  # separate execution based on variable type
   if(class(aux$.y.) %in% c('integer', 'numeric')){
     
-    # var numerica ----
+    # numeric variable ----
     
     aux <- tab_desc_num(aux, column) %>%
       mutate(highlight = 'J2') %>% ungroup %>%
-      # adiciona linha divisoria para organizacao da tabela
-      # destacando o nome da variavel que esta sendo analisada
+      # add dividing line to organize the table and highlight the
+      # name of the variable being analysed
       add_row(.y. = paste0('[', str_replace_all(stringr::str_to_title(column),
                                                 '_', ' '), ']'),
               # variable highlight serves for styling the table via
@@ -24,15 +26,14 @@ tab_desc <- function(df, column){
               ., .before = 1, group1 = msdr(aux$.y.))
   }else{
     
-    # var categorica ----
-    # mostrar quais niveis categoricas existentem para a var cat
+    # categorical variable ----
+    # show which categorical levels exist for the variable
 
     exemplo_niveis <- paste('Levels:', paste(sort(unique(aux$.y.)),
-
                                              collapse = ', '))
-    # limita o tamanho do vetor para nao desconfigurar a tabela
-    if(str_count(exemplo_niveis)>10){
-      exemplo_niveis <- paste0(str_trim(str_sub(exemplo_niveis,  end = 20)), '...')}
+    # limit length of the string to avoid breaking the table layout
+    if(nchar(exemplo_niveis) > 20){
+      exemplo_niveis <- paste0(str_trim(str_sub(exemplo_niveis, end = 20)), '...')}
 
     try_error <- class(try(
       survdiff(data = aux, Surv(aux$tempos, aux$censura)~.y.)[["pvalue"]],
