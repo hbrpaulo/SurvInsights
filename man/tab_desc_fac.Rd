@@ -7,13 +7,13 @@
 tab_desc_fac(aux)
 }
 \arguments{
-\item{aux}{Data frame with columns \code{tempos}, \code{censura} and \code{.y.}.}
+\item{aux}{Data frame with columns `tempos`, `censura` and `.y.`.}
 }
 \value{
 Tibble with counts and mean survival for each level.
 }
 \description{
-Helper for \code{tab_desc} used when the analysed variable is categorical.
+Helper for `tab_desc` used when the analysed variable is categorical.
 }
 \examples{
 tab_desc_fac(tibble::tibble(tempos=1:2, censura=c(1,0), .y.=c('A','B')))

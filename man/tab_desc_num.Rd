@@ -7,7 +7,7 @@
 tab_desc_num(aux, column, k = 4, test = "-")
 }
 \arguments{
-\item{aux}{Data frame with columns \code{tempos}, \code{censura} and the numeric variable \code{.y.}.}
+\item{aux}{Data frame with columns `tempos`, `censura` and the numeric variable `.y.`.}
 
 \item{column}{Name of the numeric column.}
 

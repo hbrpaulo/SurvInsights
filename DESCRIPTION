@@ -1,26 +1,7 @@
 Package: SurvInsights
-Title: Sepsis Survival Minimal Clinical Records
-Version: 0.1.0
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Author: Donated to UCI by Davide Chicco and Giuseppe Jurman
-Maintainer: UCI
-Description: This dataset contains minimal clinical records for survival
-    prediction of sepsis patients. It includes 110,204 admissions of
-    84,811 hospitalized individuals in Norway from 2011–2012, diagnosed
-    with infections, systemic inflammatory response syndrome, sepsis
-    (Sepsis-3), or septic shock. The prediction task is to determine
-    patient survival approximately 9 days after hospital admission, using
-    only age, sex, and sepsis episode count. The dataset includes three
-    cohorts: primary (Norway), study (subset of primary cohort defined by
-    Sepsis-3), and an external validation cohort (South Korea). This
-    minimal-feature dataset enables rapid and interpretable clinical
-    modeling.
-License: CC0
-URL: 
-    https://archive.ics.uci.edu/dataset/827/sepsis+survival+minimal+clinical+records
-BugReports: https://archive.ics.uci.edu/ml/
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
+Title: Tools for Survival Analysis Descriptive Tables
+Version: 0.0.0.9000
+Authors@R: person(given = "Paulo", role = c("aut", "cre"), email = "hbr.paulo@gmail.com")
+Description: Provides helper functions for summarising survival data in tables.
+License: MIT
 RoxygenNote: 7.3.2

@@ -7,7 +7,7 @@
 msdr_y(aux, k = 2)
 }
 \arguments{
-\item{aux}{Data frame with columns \code{tempos}, \code{censura} and grouping variable \code{.y.}.}
+\item{aux}{Data frame with columns `tempos`, `censura` and grouping variable `.y.`.}
 
 \item{k}{Number of decimal places for rounding.}
 }

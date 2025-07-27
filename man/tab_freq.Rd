@@ -7,13 +7,13 @@
 tab_freq(aux)
 }
 \arguments{
-\item{aux}{Data frame containing a \code{.y.} column.}
+\item{aux}{Data frame containing a `.y.` column.}
 }
 \value{
 Tibble with counts and percentages for each level.
 }
 \description{
-Create a simple frequency table for the column \code{.y.} of a data frame.
+Create a simple frequency table for the column `.y.` of a data frame.
 }
 \examples{
 tab_freq(tibble::tibble(.y. = c('A','B','A')))

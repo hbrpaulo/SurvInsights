@@ -7,7 +7,7 @@
 tab_desc(df, column)
 }
 \arguments{
-\item{df}{Data frame containing \code{tempos}, \code{censura} and the variable.}
+\item{df}{Data frame containing `tempos`, `censura` and the variable.}
 
 \item{column}{Name of the column to be analysed.}
 }
