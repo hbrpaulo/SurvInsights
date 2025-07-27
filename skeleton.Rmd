@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.align = 'center', 
+knitr::opts_chunk$set(fig.align = 'center',
                       out.width = '80%',
                       echo = FALSE,
                       background = '0000ff',
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.align = 'center',
                       fig.keep = 'H')
 knitr::opts_knit$set(global.par = TRUE)
 options(
-  knitr.kable.NA = ' ', 
+  knitr.kable.NA = ' ',
   format.args = list(decimal.mark = ','))
 
 ```
@@ -89,14 +89,14 @@ tab_desc(df, 'diametro_final') %>% kbl %>% kable_classic
 ## Tabela principal
 
 ```{r, results='asis'}
-tabelao %>% 
-  kbl('html', digits = 4, escape = FALSE, booktabs = TRUE, 
-      longtable = TRUE, align = 'c', decimal.mark = ',') %>% 
-  kable_classic %>% 
+tabelao %>%
+  kbl('html', digits = 4, escape = FALSE, booktabs = TRUE,
+      longtable = TRUE, align = 'c', decimal.mark = ',') %>%
+  kable_classic %>%
   row_spec(which(tabelao$highlight=='J1'), bold = T, color = "black",
-           align = 'c', background = "grey95") %>% 
+           align = 'c', background = "grey95") %>%
   column_spec(ncol(tabelao), color = 'white', background = 'white') %>%
-  scroll_box(height = "1000px") %>% 
+  scroll_box(height = "1000px") %>%
   footnote(general = "Here is a general comments of the table. ",
            number = c("Footnote 1; ", "Footnote 2; "),
            alphabet = c("Footnote A; ", "Footnote B; "),
