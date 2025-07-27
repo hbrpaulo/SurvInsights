@@ -12,7 +12,7 @@ msdr(x, k = 2)
 \item{k}{Number of decimal places to round to.}
 }
 \value{
-A character string in the form "mean±sd (min~max)".
+A character string in the form "mean plus and minus sd (min~max)".
 }
 \description{
 Format the mean, standard deviation and range of a numeric vector.
