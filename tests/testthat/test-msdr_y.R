@@ -1,4 +1,6 @@
 library(SurvInsights)
+library(survival)
+library(tidyverse)
 
 sample_df <- tibble::tibble(
   tempos = c(5, 10, 7, 12, 20, 3),
