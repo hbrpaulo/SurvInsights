@@ -39,3 +39,10 @@ examples.
 
    The rendered HTML will contain the descriptive tables shown in the
    examples.
+
+These tables provide quick summaries of both numeric and categorical
+variables. Survival estimates are reported alongside descriptive
+statistics so you can immediately assess important trends. The helper
+functions `tab_desc_num()`, `tab_desc_fac()`, and `tab_freq()` generate
+the results, which are formatted for publication with `kableExtra`.
+
