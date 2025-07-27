@@ -45,7 +45,7 @@ tab_desc <- function(df, column){
       p_value <- 1}else{
         p_value <- survdiff(data = aux,Surv(aux$tempos, aux$censura)~.y.)[["pvalue"]]}
     
-    # adiciona linha divisoria para organizacao da tabela
+    # add dividing line to organize the table
     aux <- tab_desc_fac(aux) %>%
       mutate(highlight = 'J2') %>% ungroup %>%
       add_row(.y. = paste0('[', str_replace_all(stringr::str_to_title(column),
