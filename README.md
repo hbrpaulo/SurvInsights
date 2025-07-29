@@ -17,11 +17,15 @@
 
 ## Sample datasets
 
-The `input/ics_archive/` folder contains excerpts from the dataset used in
+The `data/ics_archive/` folder contains excerpts from the dataset used in
 the study *"Survival prediction of patients with sepsis from age, sex, and
 septic episode number alone"* (doi:[10.1038/s41598-020-73558-3](https://doi.org/10.1038/s41598-020-73558-3)).
 Only a few variables are kept to keep the files small and suitable for
 examples.
+### Example CSV files
+
+Minimal clinical records stored in `data/ics_archive/` are shipped solely to illustrate the package functions. They contain the variables `age_years`, `sex_0male_1female`, `episode_number` and `hospital_outcome_1alive_0dead`. See [data/ics_archive/README.md](data/ics_archive/README.md) for more details.
+
 
 ## Reproducing the example analysis
 
