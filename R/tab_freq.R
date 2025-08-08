@@ -2,6 +2,8 @@
 #'
 #' @description Create a simple frequency table for the column `.y.` of a data frame.
 #' @param aux Data frame containing a `.y.` column.
+#' @importFrom dplyr select mutate group_by n distinct if_else arrange ungroup
+#' @importFrom stringr str_replace_all fixed
 #' @return Tibble with counts and percentages for each level.
 #' @examples
 #' tab_freq(tibble::tibble(.y. = c('A','B','A')))

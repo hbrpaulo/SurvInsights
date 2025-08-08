@@ -1,6 +1,7 @@
 #' Classify the type of each column in a data frame
 #' ##' This function takes a data frame as input and returns a list where each element corresponds to a column in the data frame.
 #' @param x A data frame whose columns are to be classified.
+#' @importFrom dplyr arrange
 #' @return A data.frmae where each element is the type of the corresponding column in the data frame.
 
 column_classifier <- function(x){

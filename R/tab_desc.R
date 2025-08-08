@@ -3,6 +3,10 @@
 #' @description Summarise a variable with counts and survival metrics.
 #' @param df Data frame containing `tempos`, `censura` and the variable.
 #' @param column Name of the column to be analysed.
+#' @importFrom dplyr select mutate ungroup all_of
+#' @importFrom tibble add_row
+#' @importFrom stringr str_replace_all str_to_title str_trim str_sub
+#' @importFrom survival Surv survdiff
 #' @return A tibble with frequency and survival information formatted for tables.
 #' @examples
 #' tab_desc(lung, "sex")

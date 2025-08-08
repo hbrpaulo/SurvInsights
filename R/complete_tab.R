@@ -1,3 +1,7 @@
+#' @importFrom dplyr filter pull
+#' @importFrom kableExtra kbl kable_classic row_spec column_spec scroll_box footnote
+NULL
+
 complete_tab <- function(aux){
   
   columns <- column_classifier(aux) %>% 
