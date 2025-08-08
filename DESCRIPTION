@@ -4,4 +4,10 @@ Version: 0.0.0.9000
 Authors@R: person(given = "Paulo", role = c("aut", "cre"), email = "hbr.paulo@gmail.com")
 Description: Provides helper functions for summarising survival data in tables.
 License: MIT
+Imports:
+    dplyr,
+    stringr,
+    tibble,
+    kableExtra,
+    survival
 RoxygenNote: 7.3.2

@@ -3,6 +3,10 @@
 #' @description Compute mean survival time and standard error for each group in a dataset.
 #' @param aux Data frame with columns `tempos`, `censura` and grouping variable `.y.`.
 #' @param k Number of decimal places for rounding.
+#' @importFrom tibble tibble
+#' @importFrom dplyr mutate across select
+#' @importFrom stringr str_remove
+#' @importFrom survival Surv survfit
 #' @return A tibble with group labels and a formatted summary string.
 #' @examples
 #' df <- tibble::tibble(tempos = c(1,2), censura = c(1,0), .y. = c('A','B'))

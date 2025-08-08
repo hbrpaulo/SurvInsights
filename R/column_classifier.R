@@ -4,9 +4,10 @@
 #' where each row corresponds to a column in the input.
 #'
 #' @param x A data frame whose columns are to be classified.
-#' @return A data.frame where each row contains the column name and its type.
 #' @importFrom dplyr arrange
+#' @return A data.frame where each row contains the column name and its type.
 #' @export
+
 column_classifier <- function(x){
   # Check if the input is a data frame
   if (!is.data.frame(x)) {

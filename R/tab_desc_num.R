@@ -5,6 +5,8 @@
 #' @param column Name of the numeric column.
 #' @param k Number of decimal places for rounding.
 #' @param test Label for the statistical test to display.
+#' @importFrom survival coxph Surv
+#' @importFrom tibble tibble
 #' @return A tibble with the regression coefficient and p-value.
 #' @examples
 #' tab_desc_num(lung %>% dplyr::select(tempos, censura, .y.=age), 'age')
