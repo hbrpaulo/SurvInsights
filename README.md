@@ -22,9 +22,10 @@ library(SurvInsights)
 library(survival)
 library(dplyr)
 
-df <- survival::lung |> 
+df <- survival::lung |>
   select(tempos = time, censura = status, age, sex)
 
+# default column names
 tab_desc(df, "age")
 #> # A tibble: 3 × 5
 #>   .y.                    frequency_col summary_text p     test
@@ -35,6 +36,10 @@ tab_desc(df, "age")
 
 complete_tab(df)
 #> Renders a scrolling HTML table summarising all columns
+
+# using alternative column names
+df_alt <- survival::lung |> select(tempo = time, evento = status, age, sex)
+tab_desc(df_alt, "age", time_col = "tempo", event_col = "evento")
 ```
 
 ## Sample datasets

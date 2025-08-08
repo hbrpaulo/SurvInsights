@@ -9,5 +9,6 @@ Imports:
     stringr,
     tibble,
     kableExtra,
-    survival
+    survival,
+    rlang
 RoxygenNote: 7.3.2

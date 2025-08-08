@@ -4,10 +4,14 @@
 \alias{tab_desc_fac}
 \title{Combine frequency and survival summaries for factors}
 \usage{
-tab_desc_fac(aux)
+tab_desc_fac(data, time_col = "tempos", event_col = "censura")
 }
 \arguments{
-\item{aux}{Data frame with columns `tempos`, `censura` and `.y.`.}
+\item{data}{Data frame with time, event and `.y.`.}
+
+\item{time_col}{Name of the time-to-event column.}
+
+\item{event_col}{Name of the event indicator column.}
 }
 \value{
 Tibble with counts and mean survival for each level.
@@ -17,4 +21,6 @@ Helper for `tab_desc` used when the analysed variable is categorical.
 }
 \examples{
 tab_desc_fac(tibble::tibble(tempos=1:2, censura=c(1,0), .y.=c('A','B')))
+df2 <- tibble::tibble(tempo=1:2, evento=c(1,0), .y.=c('A','B'))
+tab_desc_fac(df2, time_col = "tempo", event_col = "evento")
 }

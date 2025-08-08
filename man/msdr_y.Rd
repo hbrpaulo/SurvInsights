@@ -4,12 +4,16 @@
 \alias{msdr_y}
 \title{Mean survival by group}
 \usage{
-msdr_y(aux, k = 2)
+msdr_y(data, k = 2, time_col = "tempos", event_col = "censura")
 }
 \arguments{
-\item{aux}{Data frame with columns `tempos`, `censura` and grouping variable `.y.`.}
+\item{data}{Data frame with time, event and grouping variable `.y.`.}
 
 \item{k}{Number of decimal places for rounding.}
+
+\item{time_col}{Name of the time-to-event column.}
+
+\item{event_col}{Name of the event indicator column.}
 }
 \value{
 A tibble with group labels and a formatted summary string.
@@ -20,4 +24,6 @@ Compute mean survival time and standard error for each group in a dataset.
 \examples{
 df <- tibble::tibble(tempos = c(1,2), censura = c(1,0), .y. = c('A','B'))
 msdr_y(df)
+df2 <- dplyr::rename(df, tempo = tempos, evento = censura)
+msdr_y(df2, time_col = "tempo", event_col = "evento")
 }
