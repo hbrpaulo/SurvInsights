@@ -11,8 +11,8 @@ res <- tab_desc_num(aux, 'age', test = 'Cox PH')
 fit <- survival::coxph(data = aux, survival::Surv(aux$tempos, aux$censura)~.y.)
 expected <- tibble::tibble(
   .y. = 'Regression coefficient',
-  group1 = NA,
-  group2 = as.character(round(exp(coef(fit)), 4)),
+  frequency_col = NA,
+  summary_text = as.character(round(exp(coef(fit)), 4)),
   p = format_sig(summary(fit)[["sctest"]][["pvalue"]]),
   test = 'Cox PH'
 )

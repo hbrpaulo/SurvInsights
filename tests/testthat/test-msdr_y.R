@@ -14,7 +14,7 @@ fit <- survival::survfit(survival::Surv(tempos, censura) ~ group, data = sample_
 fit_sum <- data.frame(summary(fit)$table)
 expected <- tibble::tibble(
   .y. = c('A','B'),
-  group2 = c(
+  summary_text = c(
     SurvInsights:::format_msdr(
       round(fit_sum$rmean[1], 2),
       round(fit_sum$se.rmean[1], 2),
@@ -33,5 +33,5 @@ expected <- tibble::tibble(
 
 test_that("msdr_y summarises groups correctly", {
   expect_equal(res$.y., expected$.y.)
-  expect_equal(res$group2, expected$group2)
+  expect_equal(res$summary_text, expected$summary_text)
 })
