@@ -1,8 +1,10 @@
 #' Mean survival by group
 #'
 #' @description Compute mean survival time and standard error for each group in a dataset.
-#' @param data Data frame with columns `tempos`, `censura` and grouping variable `.y.`.
+#' @param data Data frame with time, event and grouping variable `.y.`.
 #' @param k Number of decimal places for rounding.
+#' @param time_col Name of the time-to-event column.
+#' @param event_col Name of the event indicator column.
 #' @importFrom tibble tibble
 #' @importFrom dplyr mutate across select
 #' @importFrom stringr str_remove
@@ -11,12 +13,14 @@
 #' @examples
 #' df <- tibble::tibble(tempos = c(1,2), censura = c(1,0), .y. = c('A','B'))
 #' msdr_y(df)
+#' df2 <- dplyr::rename(df, tempo = tempos, evento = censura)
+#' msdr_y(df2, time_col = "tempo", event_col = "evento")
 #' @export
-msdr_y <- function(data, k = 2){
+msdr_y <- function(data, k = 2, time_col = "tempos", event_col = "censura"){
 
   if(length(unique(data$.y.)) < 2){
     fit <- survfit(data = data,
-                   Surv(data$tempos, data$censura)~.y.)
+                   Surv(data[[time_col]], data[[event_col]])~.y.)
     fit_sum <- data.frame(t(summary(fit)$table))
     tibble(.y. = data$.y.[1],
            media = fit_sum$rmean,
@@ -28,7 +32,7 @@ msdr_y <- function(data, k = 2){
       select(.y., summary_text)
   }else{
     fit <- survfit(data = data,
-                   Surv(data$tempos, data$censura)~.y.)
+                   Surv(data[[time_col]], data[[event_col]])~.y.)
     fit_sum <- data.frame(summary(fit)$table)
 
     tibble(.y. = str_remove(rownames(fit_sum), '.y.='),

@@ -4,12 +4,16 @@
 \alias{tab_desc}
 \title{Descriptive statistics for one column}
 \usage{
-tab_desc(df, column)
+tab_desc(df, column, time_col = "tempos", event_col = "censura")
 }
 \arguments{
-\item{df}{Data frame containing `tempos`, `censura` and the variable.}
+\item{df}{Data frame containing time, event and the variable.}
 
 \item{column}{Name of the column to be analysed.}
+
+\item{time_col}{Name of the time-to-event column.}
+
+\item{event_col}{Name of the event indicator column.}
 }
 \value{
 A tibble with frequency and survival information formatted for tables.
@@ -19,4 +23,6 @@ Summarise a variable with counts and survival metrics.
 }
 \examples{
 tab_desc(lung, "sex")
+df2 <- dplyr::rename(lung, tempo = time, evento = status)
+tab_desc(df2, "sex", time_col = "tempo", event_col = "evento")
 }

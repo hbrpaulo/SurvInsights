@@ -4,16 +4,21 @@
 \alias{tab_desc_num}
 \title{Cox model summary row}
 \usage{
-tab_desc_num(aux, column, k = 4, test = "-")
+tab_desc_num(data, column, k = 4, test = "-",
+  time_col = "tempos", event_col = "censura")
 }
 \arguments{
-\item{aux}{Data frame with columns `tempos`, `censura` and the numeric variable `.y.`.}
+\item{data}{Data frame with time, event and the numeric variable `.y.`.}
 
 \item{column}{Name of the numeric column.}
 
 \item{k}{Number of decimal places for rounding.}
 
 \item{test}{Label for the statistical test to display.}
+
+\item{time_col}{Name of the time-to-event column.}
+
+\item{event_col}{Name of the event indicator column.}
 }
 \value{
 A tibble with the regression coefficient and p-value.
@@ -23,4 +28,6 @@ Generate a descriptive row for a numeric covariate using Cox regression.
 }
 \examples{
 tab_desc_num(lung \%>\% dplyr::select(tempos, censura, .y.=age), 'age')
+df2 <- lung \%>\% dplyr::select(t = time, e = status, .y. = age)
+tab_desc_num(df2, 'age', time_col = 't', event_col = 'e')
 }
