@@ -1,0 +1,26 @@
+#' Classify the type of each column in a data frame
+#' ##' This function takes a data frame as input and returns a list where each element corresponds to a column in the data frame.
+#' @param x A data frame whose columns are to be classified.
+#' @return A data.frmae where each element is the type of the corresponding column in the data frame.
+
+column_classifier <- function(x){
+  # Check if the input is a data frame
+  if (!is.data.frame(x)) {
+    stop("Input must be a data frame.")
+  }
+  
+  # Initialize an empty list to store the types of each column
+  column_types <- vector("list", ncol(x))
+  
+  # Loop through each column and classify its type
+  for (i in seq_along(x)) {
+    column_types[[i]] <- class(x[[i]])
+  }
+  
+  # Convert the list to a data frame
+  result <- data.frame(column = names(x), type = unlist(column_types), 
+                       stringsAsFactors = FALSE) %>% 
+    arrange(type, column)
+  
+  return(result)
+}

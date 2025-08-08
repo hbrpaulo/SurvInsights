@@ -28,78 +28,41 @@ library(kableExtra)
 library(tidyverse)
 library(survival)
 
-scripts <- sapply(list.files(path = 'script', recursive = TRUE, pattern = "*.R$"),
+scripts <- sapply(list.files(path = 'R', recursive = TRUE, pattern = "*.R$"),
        function(x){
-         source(file = paste0('script/', x))
+         source(file = paste0('R/', x))
                 invisible()})
-source('scripts/tab_descr_surv.R')
 ```
 
-# . {.tabset}
+# 
 
 <!-- Sugestões do do Prof Reinaldo -->
 <!-- 1. Adicionar análise sem censura de tempo médio,etc -->
 <!--    1.1 Adicionar percentual de censura -->
 
-## Tabelas secundárias
-
-### Anatomopatologico
+## Auxiliary functions
 
 ```{r}
-coluna <- column_cat[1]
-aux <- df %>%
-  select(tempos, censura, .y. = coluna)
+sd1(0)
+sd1(1:2)
 ```
-
-**Tabela de frequência absoluta e relativa:**
 
 ```{r}
-tab_freq(aux) %>% kbl %>% kable_classic
+msdr(1:2)
 ```
-
----
----
-
-**KM de cada nível da variável:**
 
 ```{r}
-tab_desc_fac(aux) %>% kbl %>% kable_classic_2
+n <- 1000
+aux <- data.frame(.y. = sample(letters[1:3], n, replace = TRUE),
+                  tempos = rexp(n, 0.05),
+                  numerica = rnorm(n, 50, 10),
+                  categorica = sample(LETTERS[1:4], n, replace = TRUE),
+                  censura = sample(0:1, n, replace = TRUE))
 ```
 
-### Diametro final
+## Main table
 
 ```{r}
-coluna <- column_cat[2]
-aux <- df_fic %>%
-  select(tempos, censura, .y. = coluna)
+complete_tab(aux)
 ```
 
-**Medidas descritivas da variável:**
-
-```{r, results = 'asis'}
-msdr(df_fic$diametro_final) %>% cat
-```
-
-*Média±DesvioPadrão (Mínimo~Máximo)*
-
-```{r}
-tab_desc(df, 'diametro_final') %>% kbl %>% kable_classic
-```
-
-## Tabela principal
-
-```{r, results='asis'}
-tabelao %>%
-  kbl('html', digits = 4, escape = FALSE, booktabs = TRUE,
-      longtable = TRUE, align = 'c', decimal.mark = ',') %>%
-  kable_classic %>%
-  row_spec(which(tabelao$highlight=='J1'), bold = T, color = "black",
-           align = 'c', background = "grey95") %>%
-  column_spec(ncol(tabelao), color = 'white', background = 'white') %>%
-  scroll_box(height = "1000px") %>%
-  footnote(general = "Here is a general comments of the table. ",
-           number = c("Footnote 1; ", "Footnote 2; "),
-           alphabet = c("Footnote A; ", "Footnote B; "),
-           symbol = c("Footnote Symbol 1; ", "Footnote Symbol 2")
-  )
-```
