@@ -2,14 +2,14 @@
 #' @importFrom kableExtra kbl kable_classic row_spec column_spec scroll_box footnote
 NULL
 
-complete_tab <- function(aux){
-  
-  columns <- column_classifier(aux) %>% 
-    filter(!(column %in% c('tempos', 'censura', '.y.'))) %>% 
+complete_tab <- function(data){
+
+  columns <- column_classifier(data) %>%
+    filter(!(column %in% c('tempos', 'censura', '.y.'))) %>%
     pull(column)
-  
+
   table <- do.call(rbind,
-                   lapply(as.list(columns), FUN = function(x)tab_desc(aux,x)))
+                   lapply(as.list(columns), FUN = function(x)tab_desc(data,x)))
   
   table %>%
     kbl('html', digits = 4, escape = FALSE, booktabs = TRUE,
