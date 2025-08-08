@@ -15,6 +15,28 @@
 # devtools::install_github("hbrpaulo/SurvInsights")
 ```
 
+## Quick Start
+
+```r
+library(SurvInsights)
+library(survival)
+library(dplyr)
+
+df <- survival::lung |> 
+  select(tempos = time, censura = status, age, sex)
+
+tab_desc(df, "age")
+#> # A tibble: 3 × 5
+#>   .y.                    group1 group2 p     test  
+#>   <chr>                  <chr>  <chr>  <chr> <chr> 
+#> 1 [Age]                  62.0   NA     NA    NA    
+#> 2 Regression coefficient NA     1.01   0.45  (Cox PH)
+#> 3 .                      NA     NA     NA    NA    
+
+complete_tab(df)
+#> Renders a scrolling HTML table summarising all columns
+```
+
 ## Sample datasets
 
 The `input/ics_archive/` folder contains excerpts from the dataset used in
