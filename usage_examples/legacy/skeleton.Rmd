@@ -28,9 +28,9 @@ library(kableExtra)
 library(tidyverse)
 library(survival)
 
-scripts <- sapply(list.files(path = 'R', recursive = TRUE, pattern = "*.R$"),
+scripts <- sapply(list.files(path = '../../R', recursive = TRUE, pattern = "*.R$"),
        function(x){
-         source(file = paste0('R/', x))
+         source(file = paste0('../../R/', x))
                 invisible()})
 ```
 

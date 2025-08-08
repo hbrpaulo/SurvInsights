@@ -34,7 +34,7 @@ examples.
 2. Source the helper scripts and render the R Markdown document:
 
    ```r
-   rmarkdown::render("skeleton.Rmd")
+   rmarkdown::render("usage_examples/legacy/skeleton.Rmd")
    ```
 
    The rendered HTML will contain the descriptive tables shown in the
