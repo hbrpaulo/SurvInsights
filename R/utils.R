@@ -1,3 +1,16 @@
+#' Build a formatted summary string
+#'
+#' @description Internal helper to compose "mean\u00B1sd (li~ls)" strings.
+#' @param mean Mean value.
+#' @param sd Standard deviation.
+#' @param li Lower limit of the range.
+#' @param ls Upper limit of the range.
+#' @return Character string with the formatted summary.
+#' @noRd
+format_msdr <- function(mean, sd, li, ls) {
+  paste0(mean, '\u00B1', sd, ' (', li, '~', ls, ')')
+}
+
 #' Numeric summary string
 #'
 #' @description Format the mean, standard deviation and range of a numeric vector.
@@ -9,10 +22,11 @@
 #' @export
 msdr <- function(x, k = 2) {
   x <- as.numeric(na.omit(x))
-  paste0(
-    round(mean(x), k), "\u00B1",
-    round(sd1(x), k), " (",
-    paste0(round(min(x), k), '~', round(max(x), k), ")")
+  format_msdr(
+    round(mean(x), k),
+    round(sd1(x), k),
+    round(min(x), k),
+    round(max(x), k)
   )
 }
 

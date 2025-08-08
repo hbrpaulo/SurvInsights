@@ -24,8 +24,7 @@ msdr_y <- function(aux, k = 2){
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>%
       dplyr::mutate(dplyr::across(where(is.numeric), \(x) round(x, digits = k))) %>%
-      mutate(group2 = paste0(media, '\u00B1', sd,' (',
-                             li, '~', ls, ')')) %>%
+      mutate(group2 = format_msdr(media, sd, li, ls)) %>%
       select(.y., group2)
   }else{
     fit <- survfit(data = aux,
@@ -38,8 +37,7 @@ msdr_y <- function(aux, k = 2){
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>%
       dplyr::mutate(dplyr::across(where(is.numeric), \(x) round(x, digits = k))) %>%
-      mutate(group2 = paste0(media, '\u00B1', sd,' (',
-                             li, '~', ls, ')')) %>%
+      mutate(group2 = format_msdr(media, sd, li, ls)) %>%
       select(.y., group2)
   }
 }
