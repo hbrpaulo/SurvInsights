@@ -15,8 +15,18 @@ fit_sum <- data.frame(summary(fit)$table)
 expected <- tibble::tibble(
   .y. = c('A','B'),
   group2 = c(
-    paste0(round(fit_sum$rmean[1],2),'±',round(fit_sum$se.rmean[1],2),' (',round(fit_sum$X0.95LCL[1],2),'~',round(fit_sum$X0.95UCL[1],2),')'),
-    paste0(round(fit_sum$rmean[2],2),'±',round(fit_sum$se.rmean[2],2),' (',round(fit_sum$X0.95LCL[2],2),'~',round(fit_sum$X0.95UCL[2],2),')')
+    SurvInsights:::format_msdr(
+      round(fit_sum$rmean[1], 2),
+      round(fit_sum$se.rmean[1], 2),
+      round(fit_sum$X0.95LCL[1], 2),
+      round(fit_sum$X0.95UCL[1], 2)
+    ),
+    SurvInsights:::format_msdr(
+      round(fit_sum$rmean[2], 2),
+      round(fit_sum$se.rmean[2], 2),
+      round(fit_sum$X0.95LCL[2], 2),
+      round(fit_sum$X0.95UCL[2], 2)
+    )
   )
 )
 
