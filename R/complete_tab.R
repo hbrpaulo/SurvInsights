@@ -1,11 +1,11 @@
 complete_tab <- function(aux){
   
-  columns <- column_classifier(aux) %>% 
-    filter(!(column %in% c('tempos', 'censura', '.y.'))) %>% 
+  columns <- column_classifier(aux) %>%
+    filter(!(column %in% c('tempos', 'censura', '.y.'))) %>%
     pull(column)
-  
-  table <- do.call(rbind,
-                   lapply(as.list(columns), FUN = function(x)tab_desc(aux,x)))
+
+  metrics_list <- compute_variable_metrics(aux, columns)
+  table <- assemble_metrics_table(metrics_list)
   
   table %>%
     kbl('html', digits = 4, escape = FALSE, booktabs = TRUE,
