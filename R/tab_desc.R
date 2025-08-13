@@ -19,7 +19,9 @@
 tab_desc <- function(df, column, time_col = "tempos", event_col = "censura"){
   time_col_sym <- rlang::sym(time_col)
   event_col_sym <- rlang::sym(event_col)
-  data <- df %>% select({{time_col_sym}}, {{event_col_sym}}, .y. = all_of(column))
+  data <- df %>% 
+    select({{time_col_sym}}, {{event_col_sym}}, .y. = all_of(column)) %>% 
+    na.omit
   
   # separate execution based on variable type
   if(class(data$.y.) %in% c('integer', 'numeric')){
