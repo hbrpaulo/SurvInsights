@@ -1,11 +1,18 @@
-complete_tab <- function(aux){
-  
-  columns <- column_classifier(aux) %>% 
-    filter(!(column %in% c('tempos', 'censura', '.y.'))) %>% 
+#' @importFrom dplyr filter pull
+#' @importFrom kableExtra kbl kable_classic row_spec column_spec scroll_box footnote
+NULL
+
+complete_tab <- function(data, time_col = "tempos", event_col = "censura"){
+
+  columns <- column_classifier(data) %>%
+    filter(!(column %in% c(time_col, event_col, '.y.'))) %>%
     pull(column)
-  
+
   table <- do.call(rbind,
-                   lapply(as.list(columns), FUN = function(x)tab_desc(aux,x)))
+                   lapply(as.list(columns),
+                          FUN = function(x) tab_desc(data, x,
+                                                      time_col = time_col,
+                                                      event_col = event_col)))
   
   table %>%
     kbl('html', digits = 4, escape = FALSE, booktabs = TRUE,

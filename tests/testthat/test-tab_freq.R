@@ -6,7 +6,7 @@ res <- tab_freq(test_df)
 
 expected <- tibble::tibble(
   .y. = c('A','B','xNA'),
-  group1 = c('2 (50%)','1 (25%)','1 (25%)'),
+  frequency_col = c('2 (50%)','1 (25%)','1 (25%)'),
   p = ' ',
   test = ' '
 )

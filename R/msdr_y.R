@@ -1,31 +1,38 @@
 #' Mean survival by group
 #'
 #' @description Compute mean survival time and standard error for each group in a dataset.
-#' @param aux Data frame with columns `tempos`, `censura` and grouping variable `.y.`.
+#' @param data Data frame with time, event and grouping variable `.y.`.
 #' @param k Number of decimal places for rounding.
+#' @param time_col Name of the time-to-event column.
+#' @param event_col Name of the event indicator column.
+#' @importFrom tibble tibble
+#' @importFrom dplyr mutate across select
+#' @importFrom stringr str_remove
+#' @importFrom survival Surv survfit
 #' @return A tibble with group labels and a formatted summary string.
 #' @examples
 #' df <- tibble::tibble(tempos = c(1,2), censura = c(1,0), .y. = c('A','B'))
 #' msdr_y(df)
+#' df2 <- dplyr::rename(df, tempo = tempos, evento = censura)
+#' msdr_y(df2, time_col = "tempo", event_col = "evento")
 #' @export
-msdr_y <- function(aux, k = 2){
+msdr_y <- function(data, k = 2, time_col = "tempos", event_col = "censura"){
 
-  if(length(unique(aux$.y.)) < 2){
-    fit <- survfit(data = aux,
-                   Surv(aux$tempos, aux$censura)~.y.)
+  if(length(unique(data$.y.)) < 2){
+    fit <- survfit(data = data,
+                   Surv(data[[time_col]], data[[event_col]])~.y.)
     fit_sum <- data.frame(t(summary(fit)$table))
-    tibble(.y. = aux$.y.[1],
+    tibble(.y. = data$.y.[1],
            media = fit_sum$rmean,
            sd = fit_sum$se.rmean,
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>%
       dplyr::mutate(dplyr::across(where(is.numeric), \(x) round(x, digits = k))) %>%
-      mutate(group2 = paste0(media, '\u00B1', sd,' (',
-                             li, '~', ls, ')')) %>%
-      select(.y., group2)
+      mutate(summary_text = format_msdr(media, sd, li, ls)) %>%
+      select(.y., summary_text)
   }else{
-    fit <- survfit(data = aux,
-                   Surv(aux$tempos, aux$censura)~.y.)
+    fit <- survfit(data = data,
+                   Surv(data[[time_col]], data[[event_col]])~.y.)
     fit_sum <- data.frame(summary(fit)$table)
 
     tibble(.y. = str_remove(rownames(fit_sum), '.y.='),
@@ -34,9 +41,8 @@ msdr_y <- function(aux, k = 2){
            li = fit_sum$X0.95LCL,
            ls = fit_sum$X0.95UCL) %>%
       dplyr::mutate(dplyr::across(where(is.numeric), \(x) round(x, digits = k))) %>%
-      mutate(group2 = paste0(media, '\u00B1', sd,' (',
-                             li, '~', ls, ')')) %>%
-      select(.y., group2)
+      mutate(summary_text = format_msdr(media, sd, li, ls)) %>%
+      select(.y., summary_text)
   }
 }
 

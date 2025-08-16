@@ -1,0 +1,91 @@
+---
+title: 'Tabela descritiva com correlacões e testes entre cada variável e os `tempos de falha`'
+header-includes:
+   - \usepackage[brazil]{babel}
+output:
+  html_document: default
+  #word_document: default
+  #pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center',
+                      out.width = '80%',
+                      echo = FALSE,
+                      background = '0000ff',
+                      message = FALSE,
+                      warning = FALSE,# eval = FALSE,
+                      fig.keep = 'H')
+knitr::opts_knit$set(global.par = TRUE)
+options(
+  knitr.kable.NA = ' ',
+  format.args = list(decimal.mark = ','))
+
+```
+
+```{r PackagesAndInput}
+library(kableExtra)
+library(tidyverse)
+library(survival)
+
+scripts <- sapply(list.files(path = '../../R', recursive = TRUE, pattern = "*.R$"),
+       function(x){
+         source(file = paste0('../../R/', x))
+                invisible()})
+```
+
+# 
+
+<!-- Sugestões do do Prof Reinaldo -->
+<!-- 1. Adicionar análise sem censura de tempo médio,etc -->
+<!--    1.1 Adicionar percentual de censura -->
+
+```{r}
+n <- 1000
+aux <- data.frame(.y. = sample(letters[1:3], n, replace = TRUE),
+                  tempos = rexp(n, 0.05),
+                  numerica = rnorm(n, 50, 10),
+                  categorica = sample(LETTERS[1:4], n, replace = TRUE),
+                  censura = sample(0:1, n, replace = TRUE))
+aux <- readxl::read_excel('../../../../Planilha Vigilancia Ativa Cruzamento- Atualizado 10.10.24-2.xlsx', skip = 10)
+# remove columns with all NAs
+# remove row off all NAs
+aux <- aux[-which(apply(aux, 1, function(x) all(is.na(x)))),]
+# remove columns with all NAs
+aux <- aux[, -which(apply(aux, 2, function(x) all(is.na(x))))]
+
+source('https://raw.githubusercontent.com/hbrpaulo/Misc/refs/heads/main/prettyNames.R')
+
+nomes <- standardize_column_names(aux)
+colnames(aux) <- nomes$modified
+
+colnames(aux)[which(colnames(aux)=='tempo_de_seguimento_meses')] <- 'tempos'
+aux <- aux %>% 
+  mutate(censura = as.numeric(intervencao==1))
+
+# columns to be mutated into numeric
+cols_to_num <- c('diametro_final_tumor', 'diametro_final_tumor', 'hemoglobina',
+                 'hematocrito', 'monocitos', 'linfocitos', 'eosinofilos',
+                 'basofilos', 'creatinina', 'calcio_total')
+aux <- aux %>% 
+  mutate(across(all_of(cols_to_num), ~ as.numeric(as.character(.))))
+```
+
+## Main table
+
+```{r}
+#columns
+index_col <- unname(unlist(lapply(apply(aux, 2, unique), length)))<=nrow(aux)*0.8
+columns <- setdiff(colnames(aux)[index_col], c('tempos', 'censura', 'nome'))
+
+if(interactive()){
+for(i in columns){
+  cat(paste0('\n\n## ', columns, '\n'))
+  tab_desc(aux,
+           column = columns,
+           event_col = 'censura', 
+           time_col = 'tempos') %>% print
+}}
+complete_tab(aux[index_col])
+```
+
