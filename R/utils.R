@@ -44,8 +44,8 @@ msdr <- function(x, k = 2) {
 format_sig <- function(x, k = 3, thresholds = c(0.001, 0.05, 0.1),
                        stars = c("***", "**", "*", "")) {
   if (x < 0) message('Negative values should not be used in this function')
-  x <- format(round(x, digits = k), scientific = FALSE)
+  x <- as.numeric(format(round(x, digits = k), scientific = FALSE))
   star <- stars[findInterval(as.numeric(x), thresholds, left.open = TRUE) + 1]
-  paste0(x, star)
+  text <- ifelse(x!=0, paste0(x, star), '~0***')
 }
 
