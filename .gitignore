@@ -55,3 +55,4 @@ rsconnect/
 *.pyc
 usage_examples/legacy/private.Rmd
 usage_examples/legacy/private.pdf
+/usage_examples/legacy/private_files
