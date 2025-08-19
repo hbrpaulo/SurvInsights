@@ -63,7 +63,6 @@ cols_to_cat <- c('categorica')
 aux <- aux %>% 
   mutate(across(all_of(cols_to_num), ~ as.numeric(as.character(.))))
 ```
-
 ## Main table
 
 ```{r}
